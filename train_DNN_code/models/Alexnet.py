@@ -115,6 +115,12 @@ def alexnet():
     return AlexNet(ch=64, num_classes=10)
 
 
+def fc1(**kwargs):
+    return FullyConnected(input_dim=32*32*3, width=100, depth=1, num_classes=10)
+
+def fc2(**kwargs):
+    return FullyConnected(input_dim=32*32*3, width=100, depth=2, num_classes=10)
+
 def fc3(**kwargs):
     return FullyConnected(input_dim=32*32*3, width=100, depth=3, num_classes=10)
 
