@@ -39,6 +39,8 @@ models = {
     'wrn110_2_noshort'      : resnet.WRN110_2_noshort,
     'wrn110_4_noshort'      : resnet.WRN110_4_noshort,
     'alex'                  : Alexnet.alexnet,
+    'fc1'                   : Alexnet.fc1,
+    'fc2'                   : Alexnet.fc2,
     'fc3'                   : Alexnet.fc3,
     'fc20'                  : Alexnet.fc20,
     'fc56'                  : Alexnet.fc56,
