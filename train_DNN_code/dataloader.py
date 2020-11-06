@@ -160,6 +160,7 @@ class GaussianColorJitter(torch.nn.Module):
         format_string += ', hue={0})'.format(self.hue)
         return format_string
 # same as get_data_loader but randomly (Normally) change the brightness, contrast or saturation of an image.
+"""
 def get_synthetic_gaussian_data_loaders(args):
     if args.trainloader and args.testloader:
         assert os.path.exists(args.trainloader), 'trainloader does not exist'
@@ -216,3 +217,4 @@ def get_synthetic_gaussian_data_loaders(args):
                                              shuffle=False, **kwargs)
 
     return trainloader, testloader, trainset
+    """
