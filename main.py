@@ -22,7 +22,7 @@ from get_gradient_weight.gradient_noise import get_grads
 
 import train_DNN_code.model_loader as model_loader
 from train_DNN_code.dataloader import get_data_loaders 
-from train_DNN_code.dataloader import get_synthetic_gaussian_data_loaders
+# from train_DNN_code.dataloader import get_synthetic_gaussian_data_loaders
 
 def init_params(net):
     for m in net.modules():
@@ -53,12 +53,12 @@ def train_save(trainloader, net, criterion, optimizer, use_cuda=True):
         for batch_idx, (inputs, targets) in enumerate(trainloader):
             batch_size = inputs.size(0)
             total += batch_size
-            import pdb
+            #import pdb
             import numpy as np
             import matplotlib.pyplot as plt
-            aa=inputs.numpy()
-            plt.imshow(aa[1,1,:]);plt.show()
-            pdb.set_trace()
+            #aa=inputs.numpy()
+            #plt.imshow(aa[1,1,:]);plt.show()
+            #pdb.set_trace()
             if use_cuda:
                 inputs, targets = inputs.cuda(), targets.cuda()
             optimizer.zero_grad()
@@ -105,7 +105,7 @@ def train_save(trainloader, net, criterion, optimizer, use_cuda=True):
 
             # record tiny steps in every epoch
             sub_loss.append(loss.item())
-            import pdb; pdb.set_trace()
+            #import pdb; pdb.set_trace()
             w = net_plotter.get_weights(net) # initial parameters
             for j in range(len(w)):
                 w[j] = w[j].cpu().numpy()
@@ -346,11 +346,12 @@ if __name__ == '__main__':
         os.makedirs('trained_nets/' + save_folder)
 
     f = open('trained_nets/' + save_folder + '/log.out', 'a')
-
-    if not sum(args.synthetic_gaussian):
-        trainloader, testloader, trainset = get_data_loaders(args)
-    else:
-        trainloader, testloader, trainset = get_synthetic_gaussian_data_loaders(args)
+    
+    # get rid of synthetic_gaussian
+    #if not sum(args.synthetic_gaussian):
+    trainloader, testloader, trainset = get_data_loaders(args)
+    #else:
+    #    trainloader, testloader, trainset = get_synthetic_gaussian_data_loaders(args)
 
     if args.label_corrupt_prob and not args.resume_model:
         torch.save(trainloader, 'trained_nets/' + save_folder + '/trainloader.dat')
