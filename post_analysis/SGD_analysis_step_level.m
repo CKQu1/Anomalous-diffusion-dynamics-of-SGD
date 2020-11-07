@@ -1,21 +1,23 @@
 % calculate the statistical property of SGD walk
 function SGD_analysis_step_level(varargin)
 % read in data
-d = dir('/project/RDS-FSC-cortical-RW/Anomalous-diffusion-dynamics-of-SGD/trained_nets/resnet*');
+% RDS-FSC-phys_DL-RW
+%d = dir('/project/RDS-FSC-cortical-RW/Anomalous-diffusion-dynamics-of-SGD/trained_nets/resnet*');
+d = dir('/project/RDS-FSC-phys_DL-RW/PhD_code/Anomalous-diffusion-dynamics-of-SGD/trained_nets/fc1_sgd_lr=0.1_bs=1024_wd=0_mom=0_save_epoch=1');
 steps_in_part = 1e3;
 % Loop number for PBS array job
-loop_num = 0;
+%loop_num = 0;
 
 for ii = 1:length(d)
     sub_loss_w_dir = dir(fullfile(d(ii).folder,d(ii).name,'model*sub_loss_w.mat'));
     % For PBS array job
-    loop_num = loop_num + 1;
-    if nargin ~= 0
-        PBS_ARRAYID = varargin{1};
-        if loop_num ~=  PBS_ARRAYID
-            continue;
-        end
-    end
+    %loop_num = loop_num + 1;
+    %if nargin ~= 0
+    %    PBS_ARRAYID = varargin{1};
+    %    if loop_num ~=  PBS_ARRAYID
+    %        continue;
+    %    end
+    %end
     part_num = 1;
     index = 1;
     for file = 1:length(sub_loss_w_dir)
